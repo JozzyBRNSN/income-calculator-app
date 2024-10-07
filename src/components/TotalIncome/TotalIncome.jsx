@@ -1,3 +1,5 @@
+import './TotalIncome.css'
+
 export default function TotalIncome() {
 	return (
 		<div className='total-income'>
