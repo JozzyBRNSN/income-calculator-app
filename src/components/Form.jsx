@@ -1,4 +1,4 @@
-export default function FormInput() {
+export default function Form() {
 	return (
 		<form className='form-input'>
 			<label htmlFor='' className='label-input'>
