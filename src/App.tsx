@@ -1,6 +1,6 @@
 import './App.css'
 import Header from './components/Header/Header'
-import Form from './components/Form'
+import Form from './components/Form/Form'
 import TotalIncome from './components/TotalIncome'
 
 export default function App() {
@@ -8,7 +8,7 @@ export default function App() {
 		<>
 			<Header />
 			<Form />
-			<TotalIncome/>
+			<TotalIncome />
 		</>
 	)
 }
