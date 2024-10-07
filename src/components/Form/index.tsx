@@ -1,36 +1,24 @@
-import './Form.css'
+import styles from './index.module.scss'
 
 export default function Form() {
 	return (
-		<form className='form-input'>
-			<label htmlFor='' className='label-input'>
+		<form className={styles.form}>
+			<label className={styles.label}>
 				Почасовая ставка
-				<input
-					type='number'
-					className='text-input'
-					placeholder='Сумма за час в ₽'
-				/>
+				<input className={styles.text} placeholder='Сумма за час в ₽' />
 			</label>
-			<label htmlFor='' className='label-input'>
+			<label className={styles.label}>
 				Ставка за заказ
-				<input
-					type='number'
-					className='text-input'
-					placeholder='Оплата за заказ в ₽'
-				/>
+				<input className={styles.text} placeholder='Оплата за заказ в ₽' />
 			</label>
-			<label htmlFor='' className='label-input'>
+			<label className={styles.label}>
 				Количество заказов
-				<input
-					type='number'
-					className='text-input'
-					placeholder='Доставленные заказы'
-				/>
+				<input className={styles.text} placeholder='Доставленные заказы' />
 			</label>
-			<label htmlFor='' className='label-input'>
+			<label className={styles.label}>
 				Продолжительность смены
-				<div className='input-select'>
-					<select type='number' className='text-input'>
+				<div className={styles.select}>
+					<select className={styles.text}>
 						<option value='1'>07:00</option>
 						<option value='2'>08:00</option>
 						<option value='3'>09:00</option>
@@ -52,7 +40,7 @@ export default function Form() {
 						<option value='19'>01:00</option>
 					</select>
 					до
-					<select type='number' className='text-input'>
+					<select className={styles.text}>
 						<option value='1'>07:00</option>
 						<option value='2'>08:00</option>
 						<option value='3'>09:00</option>

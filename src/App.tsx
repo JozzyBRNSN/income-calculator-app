@@ -1,7 +1,6 @@
-import './App.css'
-import Header from './components/Header/Header'
-import Form from './components/Form/Form'
-import TotalIncome from './components/TotalIncome/TotalIncome'
+import Header from './components/Header/index.tsx'
+import Form from './components/Form/index.tsx'
+import TotalIncome from './components/TotalIncome/index.tsx'
 
 export default function App() {
 	return (
