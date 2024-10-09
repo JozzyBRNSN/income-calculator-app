@@ -15,7 +15,7 @@ export default function Form() {
 				Количество заказов
 				<input className={styles.text} placeholder='Доставленные заказы' />
 			</label>
-			<label className={styles.label}>
+			{/* <label className={styles.label}>
 				Продолжительность смены
 				<div className={styles.select}>
 					<select className={styles.text}>
@@ -62,7 +62,7 @@ export default function Form() {
 						<option value='19'>01:00</option>
 					</select>
 				</div>
-			</label>
+			</label> */}
 		</form>
 	)
 }
