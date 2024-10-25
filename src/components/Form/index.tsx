@@ -1,19 +1,76 @@
+import { useState } from 'react'
+import CalculationButton from '../СalculationButton/index'
 import styles from './index.module.scss'
 
+const DEFAULT_STATE_FORM = {
+	hourlyRate: '',
+	ratePerOrder: '',
+	ordersCount: '',
+}
+
 export default function Form() {
+	const [state, setState] = useState(DEFAULT_STATE_FORM)
+	const onHandleOnSubmit = (e: any) => {
+		e.preventDefault()
+		setState(DEFAULT_STATE_FORM)
+		console.log(state)
+	}
+
 	return (
-		<form className={styles.form}>
+		<form onSubmit={onHandleOnSubmit} className={styles.form}>
 			<label className={styles.label}>
 				Почасовая ставка
-				<input className={styles.text} placeholder='Сумма за час в ₽' />
+				<input
+					value={state.hourlyRate}
+					onChange={e =>
+						setState(prevState => {
+							return {
+								hourlyRate: e.target.value,
+								ratePerOrder: prevState.ratePerOrder,
+								ordersCount: prevState.ordersCount,
+							}
+						})
+					}
+					name='hourlyRate'
+					className={styles.text}
+					placeholder='Сумма за час в ₽'
+				/>
 			</label>
 			<label className={styles.label}>
 				Ставка за заказ
-				<input className={styles.text} placeholder='Оплата за заказ в ₽' />
+				<input
+					value={state.ratePerOrder}
+					onChange={e =>
+						setState(prevState => {
+							return {
+								hourlyRate: prevState.hourlyRate,
+								ratePerOrder: e.target.value,
+								ordersCount: prevState.ordersCount,
+							}
+						})
+					}
+					name='ratePerOrder'
+					className={styles.text}
+					placeholder='Оплата за заказ в ₽'
+				/>
 			</label>
 			<label className={styles.label}>
 				Количество заказов
-				<input className={styles.text} placeholder='Доставленные заказы' />
+				<input
+					value={state.ordersCount}
+					onChange={e =>
+						setState(prevState => {
+							return {
+								hourlyRate: prevState.hourlyRate,
+								ratePerOrder: prevState.ratePerOrder,
+								ordersCount: e.target.value,
+							}
+						})
+					}
+					name='ordersCount'
+					className={styles.text}
+					placeholder='Доставленные заказы'
+				/>
 			</label>
 			{/* <label className={styles.label}>
 				Продолжительность смены
@@ -63,6 +120,7 @@ export default function Form() {
 					</select>
 				</div>
 			</label> */}
+			<CalculationButton />
 		</form>
 	)
 }
