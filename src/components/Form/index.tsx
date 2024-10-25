@@ -1,36 +1,30 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 import CalculationButton from '../СalculationButton/index'
 import styles from './index.module.scss'
 
-const DEFAULT_STATE_FORM = {
-	hourlyRate: '',
-	ratePerOrder: '',
-	ordersCount: '',
-}
-
 export default function Form() {
-	const [state, setState] = useState(DEFAULT_STATE_FORM)
+	const refForm = useRef<any>(null)
+	const result = {
+		hourlyRate: '',
+		ratePerOrder: '',
+		ordersCount: '',
+	}
+
 	const onHandleOnSubmit = (e: any) => {
 		e.preventDefault()
-		setState(DEFAULT_STATE_FORM)
-		console.log(state)
+		refForm.current.reset()
+		console.log(result)
+		result.hourlyRate = ''
+		result.ratePerOrder = ''
+		result.ordersCount = ''
 	}
 
 	return (
-		<form onSubmit={onHandleOnSubmit} className={styles.form}>
+		<form onSubmit={onHandleOnSubmit} ref={refForm} className={styles.form}>
 			<label className={styles.label}>
 				Почасовая ставка
 				<input
-					value={state.hourlyRate}
-					onChange={e =>
-						setState(prevState => {
-							return {
-								hourlyRate: e.target.value,
-								ratePerOrder: prevState.ratePerOrder,
-								ordersCount: prevState.ordersCount,
-							}
-						})
-					}
+					onChange={e => (result.hourlyRate = e.target.value)}
 					name='hourlyRate'
 					className={styles.text}
 					placeholder='Сумма за час в ₽'
@@ -39,16 +33,7 @@ export default function Form() {
 			<label className={styles.label}>
 				Ставка за заказ
 				<input
-					value={state.ratePerOrder}
-					onChange={e =>
-						setState(prevState => {
-							return {
-								hourlyRate: prevState.hourlyRate,
-								ratePerOrder: e.target.value,
-								ordersCount: prevState.ordersCount,
-							}
-						})
-					}
+					onChange={e => (result.ratePerOrder = e.target.value)}
 					name='ratePerOrder'
 					className={styles.text}
 					placeholder='Оплата за заказ в ₽'
@@ -57,16 +42,7 @@ export default function Form() {
 			<label className={styles.label}>
 				Количество заказов
 				<input
-					value={state.ordersCount}
-					onChange={e =>
-						setState(prevState => {
-							return {
-								hourlyRate: prevState.hourlyRate,
-								ratePerOrder: prevState.ratePerOrder,
-								ordersCount: e.target.value,
-							}
-						})
-					}
+					onChange={e => (result.ordersCount = e.target.value)}
 					name='ordersCount'
 					className={styles.text}
 					placeholder='Доставленные заказы'
