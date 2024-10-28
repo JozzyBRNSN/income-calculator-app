@@ -16,6 +16,16 @@ export default function Form() {
 		console.log(state)
 	}
 
+	const [totalIncome, setTotalIncome] = useState(0)
+	const getTotalIncome = () => {
+		const income =
+			Number(hourlyRate) * Number(ratePerOrder) * Number(ordersCount)
+		setTotalIncome(income)
+		console.log(income)
+	}
+
+	const { hourlyRate, ratePerOrder, ordersCount } = totalIncome ? state : state
+
 	return (
 		<form onSubmit={onHandleOnSubmit} className={styles.form}>
 			<label className={styles.label}>
@@ -31,6 +41,7 @@ export default function Form() {
 							}
 						})
 					}
+					type='number'
 					name='hourlyRate'
 					className={styles.text}
 					placeholder='Сумма за час в ₽'
@@ -49,6 +60,7 @@ export default function Form() {
 							}
 						})
 					}
+					type='number'
 					name='ratePerOrder'
 					className={styles.text}
 					placeholder='Оплата за заказ в ₽'
@@ -67,6 +79,7 @@ export default function Form() {
 							}
 						})
 					}
+					type='number'
 					name='ordersCount'
 					className={styles.text}
 					placeholder='Доставленные заказы'
@@ -120,7 +133,9 @@ export default function Form() {
 					</select>
 				</div>
 			</label> */}
-			<CalculationButton />
+			<button onClick={getTotalIncome} type='submit' className={styles.button}>
+				Рассчитать доход
+			</button>
 		</form>
 	)
 }
