@@ -7,7 +7,7 @@ export default function TotalIncome() {
 				Надбавок нет. Ты можешь добавить их в Конструкторе (Третья кнопка внизу)
 			</p>
 			<p>Твой доход:</p>
-			<h2 className={styles.income}>0₽</h2>
+			<h2 className={styles.income}>{totalIncome}₽</h2>
 		</div>
 	)
 }
