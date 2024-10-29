@@ -14,7 +14,7 @@ export default function Form({
   setTotalIncome: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [state, setState] = useState(DEFAULT_STATE_FORM);
-  const onHandleOnSubmit = (e: any) => {
+  const onHandleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { hourlyRate, ratePerOrder, ordersCount } = state;
     setState(DEFAULT_STATE_FORM);
