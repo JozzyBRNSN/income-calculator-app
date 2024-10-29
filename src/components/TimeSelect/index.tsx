@@ -14,9 +14,9 @@ export default function TimeSelect() {
 		<label className={styles.label}>
 			Продолжительность смены
 			<div className={styles.select}>
-				<select className={styles.text}>{timeOptions}</select>
+				<select className={styles.option}>{timeOptions}</select>
 				до
-				<select className={styles.text}>{timeOptions}</select>
+				<select className={styles.option}>{timeOptions}</select>
 			</div>
 		</label>
 	)
