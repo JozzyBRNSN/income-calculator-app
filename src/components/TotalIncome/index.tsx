@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import styles from './index.module.scss'
 
 export default function TotalIncome() {
+const [totalIncome, setTotalIncome] = useState(0)
+
 	return (
 		<div className={styles.total}>
 			<p className={styles.text}>
