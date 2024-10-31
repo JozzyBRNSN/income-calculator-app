@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './index.module.scss'
 import TimeSelect from '../TimeSelect'
+import Button from '../Button'
 
 const DEFAULT_STATE_FORM = {
 	hourlyRate: '',
@@ -83,9 +84,7 @@ export default function Form({
 				/>
 			</label>
 			<TimeSelect />
-			<button type='submit' className={styles.button}>
-				Рассчитать доход
-			</button>
+			<Button />
 		</form>
 	)
 }
