@@ -7,6 +7,8 @@ const DEFAULT_STATE_FORM = {
 	hourlyRate: '',
 	ratePerOrder: '',
 	ordersCount: '',
+	startTime: '',
+	endTime: '',
 }
 
 export default function Form({
@@ -17,12 +19,23 @@ export default function Form({
 	const [state, setState] = useState(DEFAULT_STATE_FORM)
 	const onHandleOnSubmit = (e: any) => {
 		e.preventDefault()
-		const { hourlyRate, ratePerOrder, ordersCount } = state
+		const { hourlyRate, ratePerOrder, ordersCount, startTime, endTime } = state
 		setState(DEFAULT_STATE_FORM)
 		const income =
-			Number(hourlyRate) + Number(ratePerOrder) * Number(ordersCount)
+			Number(ratePerOrder) * Number(ordersCount) +
+			(Number(hourlyRate) * (Number(endTime) - Number(startTime)))
 		setTotalIncome(income)
+		console.log(Number(endTime) - Number(startTime))
 	}
+
+	const timeOptions = Array.from({ length: 24 }, (_, i) => {
+		const hours = String(i < 10 ? `0${i}` : i)
+		return (
+			<option key={i} value={i + 1}>
+				{hours}:00
+			</option>
+		)
+	})
 
 	return (
 		<form onSubmit={onHandleOnSubmit} className={styles.form}>
@@ -36,6 +49,8 @@ export default function Form({
 								hourlyRate: e.target.value,
 								ratePerOrder: prevState.ratePerOrder,
 								ordersCount: prevState.ordersCount,
+								startTime: prevState.startTime,
+								endTime: prevState.endTime,
 							}
 						})
 					}
@@ -55,6 +70,8 @@ export default function Form({
 								hourlyRate: prevState.hourlyRate,
 								ratePerOrder: e.target.value,
 								ordersCount: prevState.ordersCount,
+								startTime: prevState.startTime,
+								endTime: prevState.endTime,
 							}
 						})
 					}
@@ -74,6 +91,8 @@ export default function Form({
 								hourlyRate: prevState.hourlyRate,
 								ratePerOrder: prevState.ratePerOrder,
 								ordersCount: e.target.value,
+								startTime: prevState.startTime,
+								endTime: prevState.endTime,
 							}
 						})
 					}
@@ -83,7 +102,49 @@ export default function Form({
 					placeholder='Доставленные заказы'
 				/>
 			</label>
-			<TimeSelect />
+			{/* <TimeSelect /> */}
+			<label className={styles.label}>
+				Продолжительность смены
+				<div className={styles.select}>
+					<select
+						name='startTime'
+						value={state.startTime}
+						onChange={e =>
+							setState(prevState => {
+								return {
+									hourlyRate: prevState.hourlyRate,
+									ratePerOrder: prevState.ratePerOrder,
+									ordersCount: prevState.ordersCount,
+									startTime: e.target.value,
+									endTime: prevState.endTime,
+								}
+							})
+						}
+						className={styles.option}
+					>
+						{timeOptions}
+					</select>
+					до
+					<select
+						name='endTime'
+						value={state.endTime}
+						onChange={e =>
+							setState(prevState => {
+								return {
+									hourlyRate: prevState.hourlyRate,
+									ratePerOrder: prevState.ratePerOrder,
+									ordersCount: prevState.ordersCount,
+									startTime: prevState.startTime,
+									endTime: e.target.value,
+								}
+							})
+						}
+						className={styles.option}
+					>
+						{timeOptions}
+					</select>
+				</div>
+			</label>
 			<Button />
 		</form>
 	)

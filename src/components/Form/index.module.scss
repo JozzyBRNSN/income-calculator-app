@@ -32,3 +32,26 @@
 	font-size: 64px;
 	color: #2f76ff;
 }
+
+.label {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.select {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+  gap: 50px;
+}
+
+.option {
+	width: 100px;
+	height: 40px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 400;
+}
+
