@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from './index.module.scss'
-import TimeSelect from '../TimeSelect'
 import Button from '../Button'
+import TotalIncome from '../TotalIncome'
 
 const DEFAULT_STATE_FORM = {
 	hourlyRate: '',
@@ -11,11 +11,7 @@ const DEFAULT_STATE_FORM = {
 	endTime: '',
 }
 
-export default function Form({
-	setTotalIncome,
-}: {
-	setTotalIncome: React.Dispatch<React.SetStateAction<number>>
-}) {
+export default function Form() {
 	const [state, setState] = useState(DEFAULT_STATE_FORM)
 	const onHandleOnSubmit = (e: any) => {
 		e.preventDefault()
@@ -23,10 +19,11 @@ export default function Form({
 		setState(DEFAULT_STATE_FORM)
 		const income =
 			Number(ratePerOrder) * Number(ordersCount) +
-			(Number(hourlyRate) * (Number(endTime) - Number(startTime)))
+			Number(hourlyRate) * (Number(endTime) - Number(startTime))
 		setTotalIncome(income)
-		console.log(Number(endTime) - Number(startTime))
 	}
+
+	const [totalIncome, setTotalIncome] = useState(0)
 
 	const timeOptions = Array.from({ length: 24 }, (_, i) => {
 		const hours = String(i < 10 ? `0${i}` : i)
@@ -146,6 +143,7 @@ export default function Form({
 				</div>
 			</label>
 			<Button />
+			<TotalIncome totalIncome={totalIncome} />
 		</form>
 	)
 }
