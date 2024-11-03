@@ -76,7 +76,6 @@ export default function Form() {
 					placeholder='Доставленные заказы'
 				/>
 			</label>
-			{/* <TimeSelect /> */}
 			<label className={styles.label}>
 				Продолжительность смены
 				<div className={styles.select}>
