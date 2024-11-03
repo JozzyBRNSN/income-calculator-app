@@ -34,23 +34,20 @@ export default function Form() {
 		)
 	})
 
+	const handleChange = (fieldName: any, value: any) => {
+		setState(prevState => ({
+			...prevState,
+			[fieldName]: value,
+		}))
+	}
+
 	return (
 		<form onSubmit={onHandleOnSubmit} className={styles.form}>
 			<label className={styles.label}>
 				Почасовая ставка
 				<input
 					value={state.hourlyRate}
-					onChange={e =>
-						setState(prevState => {
-							return {
-								hourlyRate: e.target.value,
-								ratePerOrder: prevState.ratePerOrder,
-								ordersCount: prevState.ordersCount,
-								startTime: prevState.startTime,
-								endTime: prevState.endTime,
-							}
-						})
-					}
+					onChange={e => handleChange('hourlyRate', e.target.value)}
 					type='number'
 					name='hourlyRate'
 					className={styles.text}
@@ -61,17 +58,7 @@ export default function Form() {
 				Ставка за заказ
 				<input
 					value={state.ratePerOrder}
-					onChange={e =>
-						setState(prevState => {
-							return {
-								hourlyRate: prevState.hourlyRate,
-								ratePerOrder: e.target.value,
-								ordersCount: prevState.ordersCount,
-								startTime: prevState.startTime,
-								endTime: prevState.endTime,
-							}
-						})
-					}
+					onChange={e => handleChange('ratePerOrder', e.target.value)}
 					type='number'
 					name='ratePerOrder'
 					className={styles.text}
@@ -82,17 +69,7 @@ export default function Form() {
 				Количество заказов
 				<input
 					value={state.ordersCount}
-					onChange={e =>
-						setState(prevState => {
-							return {
-								hourlyRate: prevState.hourlyRate,
-								ratePerOrder: prevState.ratePerOrder,
-								ordersCount: e.target.value,
-								startTime: prevState.startTime,
-								endTime: prevState.endTime,
-							}
-						})
-					}
+					onChange={e => handleChange('ordersCount', e.target.value)}
 					type='number'
 					name='ordersCount'
 					className={styles.text}
@@ -106,17 +83,7 @@ export default function Form() {
 					<select
 						name='startTime'
 						value={state.startTime}
-						onChange={e =>
-							setState(prevState => {
-								return {
-									hourlyRate: prevState.hourlyRate,
-									ratePerOrder: prevState.ratePerOrder,
-									ordersCount: prevState.ordersCount,
-									startTime: e.target.value,
-									endTime: prevState.endTime,
-								}
-							})
-						}
+						onChange={e => handleChange('startTime', e.target.value)}
 						className={styles.option}
 					>
 						{timeOptions}
@@ -125,17 +92,7 @@ export default function Form() {
 					<select
 						name='endTime'
 						value={state.endTime}
-						onChange={e =>
-							setState(prevState => {
-								return {
-									hourlyRate: prevState.hourlyRate,
-									ratePerOrder: prevState.ratePerOrder,
-									ordersCount: prevState.ordersCount,
-									startTime: prevState.startTime,
-									endTime: e.target.value,
-								}
-							})
-						}
+						onChange={e => handleChange('endTime', e.target.value)}
 						className={styles.option}
 					>
 						{timeOptions}
